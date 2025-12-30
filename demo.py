@@ -36,26 +36,26 @@ if uploaded_file is not None:
         
         # 音声読み込み
         if uploaded_file is not None:
-    with st.spinner('分析中...しばらくお待ちください...'):
+            with st.spinner('分析中...しばらくお待ちください...'):
         
         # --- ここから修正：一時ファイルとして保存してから読み込む ---
         # アップロードされたファイルの拡張子を取得（例: .m4a, .wav）
-        file_extension = os.path.splitext(uploaded_file.name)[1]
+                file_extension = os.path.splitext(uploaded_file.name)[1]
         
         # 一時ファイルを作成
-        with tempfile.NamedTemporaryFile(delete=False, suffix=file_extension) as tmp_file:
-            tmp_file.write(uploaded_file.getvalue())
-            tmp_file_path = tmp_file.name
+                with tempfile.NamedTemporaryFile(delete=False, suffix=file_extension) as tmp_file:
+                    tmp_file.write(uploaded_file.getvalue())
+                    tmp_file_path = tmp_file.name
 
-        try:
+                try:
             # librosaで一時ファイルのパスを読み込む
-            y, sr = librosa.load(tmp_file_path, sr=None)
-        except Exception as e:
-            st.error(f"読み込みエラーが発生しました: {e}")
-            st.stop()
-        finally:
+                    y, sr = librosa.load(tmp_file_path, sr=None)
+                except Exception as e:
+                    st.error(f"読み込みエラーが発生しました: {e}")
+                    st.stop()
+                finally:
             # 読み込み終わったら一時ファイルを削除（お掃除）
-            os.remove(tmp_file_path)
+                    os.remove(tmp_file_path)
         # --- 修正ここまで ---
         
         # 基本情報
