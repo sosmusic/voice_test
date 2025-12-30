@@ -16,7 +16,7 @@ st.markdown("音声ファイル（WAV, MP3）をアップロードしてくだ�
 st.sidebar.header("分析設定")
 
 # ファイルアップロード
-uploaded_file = st.sidebar.file_uploader("ファイルをアップロード", type=["wav", "mp3"])
+uploaded_file = st.file_uploader("ファイルをアップロード", type=["wav", "mp3", "m4a"])
 
 # PDF用の情報入力
 patient_id = st.sidebar.text_input("ID / ファイル名", value="test_patient")
